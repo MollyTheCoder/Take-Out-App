@@ -1,21 +1,10 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { connect } from 'react-redux'
 import store from './../store'
+import Calendar from './Calendar';
+import {getDate} from '../general.js'
 
 const AllOrders = (props) => {
-
-    const curDay = () => {
-        let today = new Date();
-        let dd = today.getDate();
-        let mm = today.getMonth()+1; //As January is 0.
-        let  yyyy = today.getFullYear();
-        
-        if(dd<10) dd='0'+dd;
-        if(mm<10) mm='0'+mm;
-     
-        return (yyyy + "-" + mm + "-" + dd);
-        };
-    const todayDate = curDay();
 
     const PayOrder = (e, obj, user) => {
         let newObj = obj;
@@ -36,9 +25,18 @@ const AllOrders = (props) => {
         store.dispatch({type: "UpdateOrder", payload: newState}); 
         
     }
+    
+    let [date, setDate] = useState(getDate());
+
+    const getValueDate = (val) => {  
+      setDate(val);
+    }
+        
 
     let allOrders = props.state.length > 0 ? props.state.map((o, i) => {
-        let orders = o.orders;
+        let orders = date === null ? o.orders : o.orders.filter(v=>v.orderDate === date);
+
+
         return ( <div key={i}>
                {o.orders.length > 0 && 
                 <p>{o.name}</p>
@@ -46,12 +44,19 @@ const AllOrders = (props) => {
                 {o.orders.length > 0 && 
                 <div className="container">{orders.map((v,k) => {
                         return  <div key={k} className="row">
+                                    
+                                    {v.orderDate === getValueDate && 
+                                    <div>
                                     <p className="col-3 orderDetail">{v.orderDetail}</p>
                                     <p className="col-3 orderPrice">{v.orderPrice}{v.orderCurrency}</p>
                                     <p className="col-3">{v.orderPaid.toString()}</p>
-                                    {v.orderPaid === false &&
-                                        <button type="button" onClick={(e) => PayOrder(e, v, o)}>Order was paid</button>
+                                    
+                                      {v.orderPaid === false &&
+                                          <button type="button" onClick={(e) => PayOrder(e, v, o)}>Order was paid</button>
+                                      }                                     
+                                      </div>
                                     }
+                                    
                                 </div> 
                       })}</div>
                
@@ -63,7 +68,8 @@ const AllOrders = (props) => {
     }) : "nothing found"
   return (
     <div>
-    <input type="date" id="DateOfOrder" defaultValue={todayDate} />
+    {/* <input type="date" id="DateOfOrder" defaultValue={todayDate} /> */}
+    <Calendar setValue={(val) => getValueDate(val)} date={date} />
    <div>
        {allOrders}
    </div> 
