@@ -1,0 +1,68 @@
+[
+    {
+        "userID": "MileyM",
+        "password": "Test1234-",
+        "admin": true,
+        "name": "Miley Cyrus",
+        "orders": [
+            {
+                "orderDetail": "soup",
+                "orderPrice": 19.90,
+                "orderCurrency": "LEI",
+                "orderDate": "2019-03-29",
+                "orderPaid": true
+            },
+            {
+                "orderDetail": "fries",
+                "orderPrice": 15.90,
+                "orderCurrency": "LEI",
+                "orderDate": "2019-03-28",
+                "orderPaid": false
+            }
+        ]
+    },
+    {
+        "userID": "TaylorS",
+        "password": "Test1234-",
+        "admin": false,
+        "name": "Taylor Swift",
+        "orders": [
+            {
+                "orderDetail": "soup",
+                "orderPrice": 19.90,
+                "orderCurrency": "LEI",
+                "orderDate": "2019-03-29",
+                "orderPaid": true
+            },
+            {
+                "orderDetail": "fries",
+                "orderPrice": 15.90,
+                "orderCurrency": "LEI",
+                "orderDate": "2019-03-28",
+                "orderPaid": true
+            }
+        ]
+    },
+    {
+        "userID": "ArianaG",
+        "password": "Test1234-",
+        "admin": false,
+        "name": "Ariana Grande",
+        "orders": [
+            {
+                "orderDetail": "soup",
+                "orderPrice": 19.90,
+                "orderCurrency": "LEI",
+                "orderDate": "2019-03-29",
+                "orderPaid": false
+            },
+            {
+                "orderDetail": "fries",
+                "orderPrice": 15.90,
+                "orderCurrency": "LEI",
+                "orderDate": "2019-03-28",
+                "orderPaid": false
+            }
+        ]
+    }
+]
