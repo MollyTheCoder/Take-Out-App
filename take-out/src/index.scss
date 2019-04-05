@@ -1,4 +1,4 @@
-
+@import "bootstrap_custom";
 @import "~bootstrap/scss/bootstrap.scss";
 
 body {
@@ -16,13 +16,66 @@ code {
     monospace;
 }
 
+
+.loginWrapper {
+  background-color: #472c6f;
+  color: #fff;
+  height: 500px;
+}
+
+
+// GENERAL
 .container.login {
   width: 100vw;
   height: 100vh;
 }
-
-.loginWrapper {
-  background-color: #563d7c;
-  color: #fff;
-  height: 500px;
+i {
+  font-size: 1.4rem;
+  color: #e0c580;
 }
+.white-background {
+  background-color: #fdfdfd;
+}
+.error-field {
+  color: #e81414;
+}
+.editOrder,
+.deleteOrder,
+.backButton {
+  border: none;
+  background: none;
+}
+// PROFILE / ADD ORDER
+.profilePictureWrapper {
+  border-radius: 50%;
+  height: 250px;
+  width: 250px;
+  overflow: hidden;
+  position: relative;
+}
+
+.profilePicture {
+  height: 300px;
+  position: absolute;
+  top: -9999px;
+  bottom: -9999px;
+  left: -9999px;
+  right: -9999px;
+  margin: auto;
+}
+
+.backButton i {
+  font-size: 3rem;
+}
+
+h1 {
+  font-weight: 700;
+  color: #472c6f;
+}
+
+html,
+.App {
+  background-color: #f6f3f9;
+}
+
+

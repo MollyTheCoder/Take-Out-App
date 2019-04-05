@@ -7,16 +7,18 @@
         "orders": [
             {
                 "orderDetail": "soup",
+                "orderRestaurant": "McDonalds",
                 "orderPrice": 19.90,
                 "orderCurrency": "LEI",
-                "orderDate": "2019-03-29",
+                "orderDate": "2019-04-04",
                 "orderPaid": true
             },
             {
                 "orderDetail": "fries",
+                "orderRestaurant": "McDonalds",
                 "orderPrice": 15.90,
                 "orderCurrency": "LEI",
-                "orderDate": "2019-03-28",
+                "orderDate": "2019-04-03",
                 "orderPaid": false
             }
         ]
@@ -29,16 +31,18 @@
         "orders": [
             {
                 "orderDetail": "soup",
+                "orderRestaurant": "McDonalds",
                 "orderPrice": 19.90,
                 "orderCurrency": "LEI",
-                "orderDate": "2019-03-29",
+                "orderDate": "2019-04-05",
                 "orderPaid": true
             },
             {
                 "orderDetail": "fries",
+                "orderRestaurant": "McDonalds",
                 "orderPrice": 15.90,
                 "orderCurrency": "LEI",
-                "orderDate": "2019-03-28",
+                "orderDate": "2019-04-04",
                 "orderPaid": true
             }
         ]
@@ -51,16 +55,18 @@
         "orders": [
             {
                 "orderDetail": "soup",
+                "orderRestaurant": "McDonalds",
                 "orderPrice": 19.90,
                 "orderCurrency": "LEI",
-                "orderDate": "2019-03-29",
+                "orderDate": "2019-04-05",
                 "orderPaid": false
             },
             {
                 "orderDetail": "fries",
+                "orderRestaurant": "McDonalds",
                 "orderPrice": 15.90,
                 "orderCurrency": "LEI",
-                "orderDate": "2019-03-28",
+                "orderDate": "2019-04-03",
                 "orderPaid": false
             }
         ]

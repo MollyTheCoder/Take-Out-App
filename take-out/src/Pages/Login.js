@@ -48,7 +48,7 @@ const Login = (props) => {
                         <button type="submit" className="btn btn-primary col-4 mb-3"  onClick={(e) => LoginAction(e)}>Login</button>  
                     </Link>  
                     </form>
-                    <p className="loginError d-none"> This is not the login you are looking for. Try again! </p>
+                    <p className="loginError d-none"> This is not the login you are looking for. Try again, you must! </p>
                 </div>
             </div>     
         </div>

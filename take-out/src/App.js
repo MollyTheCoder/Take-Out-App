@@ -10,7 +10,7 @@ import './App.css';
 class App extends Component {
   render() {
     return (
-      <div className="App">
+      <div className="App  mt-5 mb-5">
          <Switch>       
               <Route exact path="/" component={Login} />
               <Route exact path="/Order" component={Orders} />

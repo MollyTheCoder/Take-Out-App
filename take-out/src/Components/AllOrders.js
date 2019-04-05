@@ -4,6 +4,7 @@ import store from './../store'
 import Calendar from './Calendar';
 import {getDate} from '../general.js'
 
+
 const AllOrders = (props) => {
 
     const PayOrder = (e, obj, user) => {
@@ -34,25 +35,24 @@ const AllOrders = (props) => {
         
 
     let allOrders = props.state.length > 0 ? props.state.map((o, i) => {
-        let orders = date === null ? o.orders : o.orders.filter(v=>v.orderDate === date);
+        let orders = o.orders;
 
 
         return ( <div key={i}>
-               {o.orders.length > 0 && 
-                <p>{o.name}</p>
-               }
+               
                 {o.orders.length > 0 && 
                 <div className="container">{orders.map((v,k) => {
                         return  <div key={k} className="row">
                                     
-                                    {v.orderDate === getValueDate && 
+                                    {v.orderDate === date && 
                                     <div>
+                                    <p>{o.name}</p>
                                     <p className="col-3 orderDetail">{v.orderDetail}</p>
                                     <p className="col-3 orderPrice">{v.orderPrice}{v.orderCurrency}</p>
                                     <p className="col-3">{v.orderPaid.toString()}</p>
                                     
                                       {v.orderPaid === false &&
-                                          <button type="button" onClick={(e) => PayOrder(e, v, o)}>Order was paid</button>
+                                          <button type="button" className="paidOrder" onClick={(e) => PayOrder(e, v, o)}><i class="fa fa-money"></i></button>
                                       }                                     
                                       </div>
                                     }
