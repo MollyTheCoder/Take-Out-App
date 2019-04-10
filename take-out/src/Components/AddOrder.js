@@ -113,7 +113,7 @@ const AddOrder = props => {
 
     //RENDER PROFILE HEADER INFORMATION
     let profileHeader = props.filteredState.map((o, i) => {
-        let orders = o.orders;
+        //let orders = o.orders;
         return ( <div key={i} className="profileHeader mb-3 white-background row flex-column d-flex">    
                 <div className="profilePictureWrapper mx-auto">  
                     <img src={avatar} className="profilePicture" alt="" />          

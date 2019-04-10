@@ -5,7 +5,7 @@ import store from './../store'
 const FetchData = () => {
   axios({
       method: "get",
-      url: "/Api/users.json",
+      url: "https://app-test-e1d31.firebaseio.com/users.json",
       headers: {"ContentType": "application/json"}
   })
     .then(r => {

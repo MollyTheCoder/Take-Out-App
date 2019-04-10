@@ -1,74 +1,76 @@
-[
-    {
-        "userID": "MileyM",
-        "password": "Test1234-",
-        "admin": true,
-        "name": "Miley Cyrus",
-        "orders": [
-            {
-                "orderDetail": "soup",
-                "orderRestaurant": "McDonalds",
-                "orderPrice": 19.90,
-                "orderCurrency": "LEI",
-                "orderDate": "2019-04-04",
-                "orderPaid": true
-            },
-            {
-                "orderDetail": "fries",
-                "orderRestaurant": "McDonalds",
-                "orderPrice": 15.90,
-                "orderCurrency": "LEI",
-                "orderDate": "2019-04-03",
-                "orderPaid": false
-            }
-        ]
-    },
-    {
-        "userID": "TaylorS",
-        "password": "Test1234-",
-        "admin": false,
-        "name": "Taylor Swift",
-        "orders": [
-            {
-                "orderDetail": "soup",
-                "orderRestaurant": "McDonalds",
-                "orderPrice": 19.90,
-                "orderCurrency": "LEI",
-                "orderDate": "2019-04-05",
-                "orderPaid": true
-            },
-            {
-                "orderDetail": "fries",
-                "orderRestaurant": "McDonalds",
-                "orderPrice": 15.90,
-                "orderCurrency": "LEI",
-                "orderDate": "2019-04-04",
-                "orderPaid": true
-            }
-        ]
-    },
-    {
-        "userID": "ArianaG",
-        "password": "Test1234-",
-        "admin": false,
-        "name": "Ariana Grande",
-        "orders": [
-            {
-                "orderDetail": "soup",
-                "orderRestaurant": "McDonalds",
-                "orderPrice": 19.90,
-                "orderCurrency": "LEI",
-                "orderDate": "2019-04-05",
-                "orderPaid": false
-            },
-            {
-                "orderDetail": "fries",
-                "orderRestaurant": "McDonalds",
-                "orderPrice": 15.90,
-                "orderCurrency": "LEI",
-                "orderDate": "2019-04-03",
-                "orderPaid": false
-            }
-        ]
-    }
-]
+{
+    "users" :[
+        {
+            "userID": "MileyM",
+            "password": "Test1234-",
+            "admin": true,
+            "name": "Miley Cyrus",
+            "orders": [
+                {
+                    "orderDetail": "soup",
+                    "orderRestaurant": "McDonalds",
+                    "orderPrice": 19.90,
+                    "orderCurrency": "LEI",
+                    "orderDate": "2019-04-04",
+                    "orderPaid": true
+                },
+                {
+                    "orderDetail": "fries",
+                    "orderRestaurant": "McDonalds",
+                    "orderPrice": 15.90,
+                    "orderCurrency": "LEI",
+                    "orderDate": "2019-04-03",
+                    "orderPaid": false
+                }
+            ]
+        },
+        {
+            "userID": "TaylorS",
+            "password": "Test1234-",
+            "admin": false,
+            "name": "Taylor Swift",
+            "orders": [
+                {
+                    "orderDetail": "soup",
+                    "orderRestaurant": "McDonalds",
+                    "orderPrice": 19.90,
+                    "orderCurrency": "LEI",
+                    "orderDate": "2019-04-05",
+                    "orderPaid": true
+                },
+                {
+                    "orderDetail": "fries",
+                    "orderRestaurant": "McDonalds",
+                    "orderPrice": 15.90,
+                    "orderCurrency": "LEI",
+                    "orderDate": "2019-04-04",
+                    "orderPaid": true
+                }
+            ]
+        },
+        {
+            "userID": "ArianaG",
+            "password": "Test1234-",
+            "admin": false,
+            "name": "Ariana Grande",
+            "orders": [
+                {
+                    "orderDetail": "soup",
+                    "orderRestaurant": "McDonalds",
+                    "orderPrice": 19.90,
+                    "orderCurrency": "LEI",
+                    "orderDate": "2019-04-05",
+                    "orderPaid": false
+                },
+                {
+                    "orderDetail": "fries",
+                    "orderRestaurant": "McDonalds",
+                    "orderPrice": 15.90,
+                    "orderCurrency": "LEI",
+                    "orderDate": "2019-04-03",
+                    "orderPaid": false
+                }
+            ]
+        }
+    ]
+}
