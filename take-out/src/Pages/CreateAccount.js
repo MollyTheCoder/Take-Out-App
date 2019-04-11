@@ -17,6 +17,7 @@ const CreateAccount = () => {
         .catch((error) => {
             console.log(error);
         //    L {code: "auth/email-already-in-use", message: "The email address is already in use by another account."}
+             document.querySelector('.loginError').classList.remove('d-none')
           })
       }
   return (
@@ -26,15 +27,17 @@ const CreateAccount = () => {
             <h3 className="mb-5">Login</h3>
             <div className="col-10 mx-auto d-flex flex-column">
                 <form>
-                <input type="text" className="mx-auto form-control mb-3" name="displayName" id="name" />
+                <label for="username">Email</label>
                 <input type="text" className="mx-auto form-control mb-3" name="username" id="username" />
+                <label for="password">Password</label>
                 <input type="password" className="mx-auto form-control mb-3" name="password" id="password"/>
                 <Link to={'/Order'}>
-                    <button type="submit" className="btn btn-primary col-4 mb-3" id="loginButton"  onClick={(e) => signUp(e)}>Login</button>  
+                    <button type="submit" className="btn btn-primary col-4 mb-3" id="loginButton"  onClick={(e) => signUp(e)}>Sign Up</button>  
                 </Link>  
                 </form>
-                <p className="loginError d-none"> This is not the login you are looking for. Try again, you must! </p>
+                <p className="loginError d-none"> Can this email have more than one account? Nope! Try another one! </p>
             </div>
+            <p className=""> Already have an account? <Link to={'/'}> Click here! </Link></p>
         </div>     
     </div>
   

@@ -25,7 +25,7 @@ class App extends Component {
       
       if (user) {
         this.setState({user})
-        console.log(user, 'there is a user');            
+      //  console.log(user, 'there is a user');            
       } else {        
         this.setState({user: null})   
         console.log('no user')
