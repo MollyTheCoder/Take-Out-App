@@ -8,6 +8,8 @@ import avatar from './avatar.jpg'
 
 const AddOrder = props => {
 
+
+
     //ADD EDIT AND DELETE TODAY'S ORDER
     const AddOrderToday = (e) => {
         e.preventDefault();
@@ -73,6 +75,17 @@ const AddOrder = props => {
     //GET TODAY'S DATE
     const todayDate = getDate();
 
+    //add button for admins to see al orders
+    const isAdmin = props.filteredState.map((o,k) => {   
+        if(o.admin === true) {
+            return (               
+                <Link to={'/AllOrders'} key={k}>
+                    <button type="button" className="btn btn-primary m-5">View and Edit All Orders</button>  
+                </Link>                 
+            );
+        }        
+    })
+
     // RENDER ORDER LIST INFORMATION    
     let allOrders = props.filteredState.length > 0 ? props.filteredState.map((o, i) => {
         let orders = o.orders;
@@ -121,6 +134,7 @@ const AddOrder = props => {
                 <h1 className="m-5">{o.name}</h1>    
                 <div>
                     <p>Unpaid Orders</p>
+                    {isAdmin}
                 </div>                                                         
                 
         </div>
@@ -133,6 +147,7 @@ const AddOrder = props => {
         return r;
     }, "") : "nothing found";
 
+    
     //START OF HTML
     return (
         <div id="profileWrapper" className="container rounded">

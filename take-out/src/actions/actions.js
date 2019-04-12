@@ -27,5 +27,10 @@ const DeleteOrder = (state, obj) => {
      store.dispatch({type: "ChangeOrder", payload: newState}); 
 }
 
+const GetCurrentUserData = (state, email) => {
+    let getUserData = state.filter(o => o.email === email);
 
-export {FetchData,DeleteOrder}
+    store.dispatch({type: "LoggedUserData", payload: getUserData})
+}
+
+export {FetchData,DeleteOrder, GetCurrentUserData}
