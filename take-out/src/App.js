@@ -49,10 +49,10 @@ const App = (props) => {
         <button type="button" onClick={(e) => signOut(e)}> Sign Out </button>
          <Switch>                                   
               <Route exact path="/" component={Start} />
-              <Route exact path="/SignUp" component={CreateAccount} />    
-              <Route exact path="/RecoverPassword" component={RecoverPassword} />                
-              <Route exact path="/MyOrder" component={AddOrder} />
-              <Route exact path="/AllOrders" component={AllOrders} />
+              <Route path="/SignUp" component={CreateAccount} />    
+              <Route path="/RecoverPassword" component={RecoverPassword} />                
+              <Route path="/MyOrder" component={AddOrder} />
+              <Route path="/AllOrders" component={AllOrders} />
             </Switch>  
       </div>
     );
