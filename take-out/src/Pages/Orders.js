@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import AddOrder from './../Components/AddOrder';
-import {FetchData, GetCurrentUserData} from '../actions/actions.js'
+import {GetCurrentUserData} from '../actions/actions.js'
 import fire from '../Firebase/Firebase';
 import { connect } from 'react-redux'
 
@@ -9,7 +9,7 @@ const Orders = (props) => {
   console.log(props.state, 'this is the state')  
   useEffect(()=>{  
     let currentUser = fire.auth().currentUser; 
-    console.log("tesdt",currentUser)
+   // console.log("tesdt",currentUser)
   },[]);
   
 

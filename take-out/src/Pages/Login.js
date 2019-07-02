@@ -1,15 +1,11 @@
 import React, {useEffect} from 'react'
 import { connect } from 'react-redux'
-import {FetchData, GetCurrentUserData} from '../actions/actions.js'
+import {GetCurrentUserData} from '../actions/userActions.js'
 import fire from '../Firebase/Firebase';
 import {  Link } from 'react-router-dom'
 
 
-const Login = (props) => {
-    useEffect(() => {    
-        FetchData()
-      },[]);
-
+const Login = (props) => {    
      
       const LoginAction = (e) => {
         e.preventDefault();
@@ -18,9 +14,7 @@ const Login = (props) => {
         
 
         fire.auth().signInWithEmailAndPassword(user, pass).then((data)=>{
-          console.log(data, 'success')
-
-          GetCurrentUserData(props.state, data.user.email)
+          props.GetCurrentUserData(data.user.email)
          
         }).catch((error) => {
             
@@ -60,12 +54,11 @@ const Login = (props) => {
 
 const mapStateToProps = (store) => {
   return { 
-    state: store.state,
-    filteredState: store.filteredState
+    userData: store.user.userData
   }
 }
 
-const mapDispatchToProps = {  }
+const mapDispatchToProps = { GetCurrentUserData }
 
 export default connect(
   mapStateToProps,

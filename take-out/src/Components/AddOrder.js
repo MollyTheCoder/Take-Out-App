@@ -85,65 +85,65 @@ const AddOrder = props => {
     // })
 
     // RENDER ORDER LIST INFORMATION    
-    let allOrders = props.filteredState.length > 0 ? props.filteredState.map((o, i) => {
-        let orders = o.orders;
-        return ( <div key={i} className="profileOrdersList white-background row p-3 d-flex flex-column rounded">
-                <h3>All your orders</h3>
-                {orders.length > 0 && 
-                <div className="container">
-                     <div className="row">
-                        <p className="col-3"> Order Detail </p>
-                        <p className="col-2"> Order Price </p>
-                        <p className="col-3"> Order Restaurant</p>
-                        <p className="col-2"> Order Status </p>
-                        <p className="col-2"> </p>
-                     </div>
-                        {orders.map((v,k) => {
-                            var status = v.orderPaid.toString() === "true" ? <i className="fa fa-check" aria-hidden="true"></i> : <i className="fa fa-times" aria-hidden="true"></i>;
-                        return  <div key={k} className="row">
-                                    <p className="col-3 orderDetail">{v.orderDetail}</p>
-                                    <p className="col-2 orderPrice">{v.orderPrice} {v.orderCurrency}</p>
-                                    <p className="col-3 ">{v.orderRestaurant} </p>
-                                    <p className="col-2">{status}</p>
-                                    {v.orderDate === todayDate && 
-                                    <div className="col-2">
-                                        <button type="button" className="editOrder btn btn-secondary" onClick={(e) => EditOrder(e, v) }><i className="fa fa-edit"></i></button>
-                                        <button type="button" className="deleteOrder btn btn-secondary" onClick={(e) => CancelOrder(e, v)}><i className="fa fa-trash"></i></button>
-                                    </div>
-                                    }
-                                </div> 
-                      })}</div>
+    // let allOrders = props.filteredState.length > 0 ? props.filteredState.map((o, i) => {
+    //     let orders = o.orders;
+    //     return ( <div key={i} className="profileOrdersList white-background row p-3 d-flex flex-column rounded">
+    //             <h3>All your orders</h3>
+    //             {orders.length > 0 && 
+    //             <div className="container">
+    //                  <div className="row">
+    //                     <p className="col-3"> Order Detail </p>
+    //                     <p className="col-2"> Order Price </p>
+    //                     <p className="col-3"> Order Restaurant</p>
+    //                     <p className="col-2"> Order Status </p>
+    //                     <p className="col-2"> </p>
+    //                  </div>
+    //                     {orders.map((v,k) => {
+    //                         var status = v.orderPaid.toString() === "true" ? <i className="fa fa-check" aria-hidden="true"></i> : <i className="fa fa-times" aria-hidden="true"></i>;
+    //                     return  <div key={k} className="row">
+    //                                 <p className="col-3 orderDetail">{v.orderDetail}</p>
+    //                                 <p className="col-2 orderPrice">{v.orderPrice} {v.orderCurrency}</p>
+    //                                 <p className="col-3 ">{v.orderRestaurant} </p>
+    //                                 <p className="col-2">{status}</p>
+    //                                 {v.orderDate === todayDate && 
+    //                                 <div className="col-2">
+    //                                     <button type="button" className="editOrder btn btn-secondary" onClick={(e) => EditOrder(e, v) }><i className="fa fa-edit"></i></button>
+    //                                     <button type="button" className="deleteOrder btn btn-secondary" onClick={(e) => CancelOrder(e, v)}><i className="fa fa-trash"></i></button>
+    //                                 </div>
+    //                                 }
+    //                             </div> 
+    //                   })}</div>
                
-                    }
+    //                 }
                                 
                 
-        </div>
-        )
-    }) : "nothing found";
+    //     </div>
+    //     )
+    // }) : "nothing found";
 
 
     //RENDER PROFILE HEADER INFORMATION
-    let profileHeader = props.filteredState.map((o, i) => {
-        //let orders = o.orders;
-        return ( <div key={i} className="profileHeader mb-3 white-background row flex-column d-flex">    
-                <div className="profilePictureWrapper mx-auto">  
-                    <img src={avatar} className="profilePicture" alt="" />          
-                </div>
-                <h1 className="m-5">{o.name}</h1>    
-                <div>
-                    <p>Unpaid Orders</p>
-                    {/* {isAdmin} */}
-                </div>                                                         
+    // let profileHeader = props.filteredState.map((o, i) => {
+    //     //let orders = o.orders;
+    //     return ( <div key={i} className="profileHeader mb-3 white-background row flex-column d-flex">    
+    //             <div className="profilePictureWrapper mx-auto">  
+    //                 <img src={avatar} className="profilePicture" alt="" />          
+    //             </div>
+    //             <h1 className="m-5">{o.name}</h1>    
+    //             <div>
+    //                 <p>Unpaid Orders</p>
+    //                 {/* {isAdmin} */}
+    //             </div>                                                         
                 
-        </div>
-        )
-    }) 
+    //     </div>
+    //     )
+    // }) 
     
     // ADD 'D-NONE' CLASS TO SAVE NEW ORDER CONTAINER ON PAGE LOAD
-    let isOrderToday = props.filteredState.length ? props.filteredState[0].orders.reduce((r,o) => {
-        r = o.orderDate === todayDate && !document.getElementById('SaveNewOrder').classList.contains('d-none') ? "d-none" : "";        
-        return r;
-    }, "") : "nothing found";
+    // let isOrderToday = props.filteredState.length ? props.filteredState[0].orders.reduce((r,o) => {
+    //     r = o.orderDate === todayDate && !document.getElementById('SaveNewOrder').classList.contains('d-none') ? "d-none" : "";        
+    //     return r;
+    // }, "") : "nothing found";
 
     
     //START OF HTML
@@ -156,10 +156,10 @@ const AddOrder = props => {
             </div>
             
 
-            {profileHeader}
+            {/* {profileHeader} */}
                 
         
-            <div id="SaveNewOrder" className={isOrderToday + " white-background my-3 p-3 row d-flex flex-column rounded"} >       
+            <div id="SaveNewOrder" className=" white-background my-3 p-3 row d-flex flex-column rounded" >       
                 <h3 className="mb-3">Today's order</h3>
                 <form id="addOrderForm" className="d-flex justify-content-around" onSubmit={(e)=> AddOrderToday(e)} autoComplete="off" noValidate>
                     <input type="hidden" name="orderCurrency" value="LEI" />                
@@ -181,7 +181,7 @@ const AddOrder = props => {
                 <p className="error-field d-none priceNotNo"> You must pay your debt with number, not letters</p>
             </div>
 
-            {allOrders}
+            {/* {allOrders} */}
         
         </div>
     )
@@ -189,8 +189,8 @@ const AddOrder = props => {
 
 const mapStateToProps = (store) => {
     return {
-      state: store.user.state,
-      filteredState: store.user.filteredState
+      state: store.order.state,
+      filteredState: store.order.filteredState
     }
   }
   
