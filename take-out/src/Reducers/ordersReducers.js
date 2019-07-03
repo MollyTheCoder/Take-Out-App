@@ -1,7 +1,7 @@
-const reducer  = (state = {}, {type,payload}) => {
-    if(type === "FetchData") {
-        return {...state, "state": [...payload], "filteredState": [...payload]}
-     }
+const reducer  = (state = {AllOrders: [], UnpaidOrders: []}, {type,payload}) => {
+    if(type === "GetOrders") {
+        return {...state, "AllOrders": [...payload]}
+    }
     if(type === "ChangeOrder") {
         return {...state, "filteredState": [...payload]}
     }

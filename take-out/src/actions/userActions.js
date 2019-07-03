@@ -17,6 +17,7 @@ const FetchData = () => {
 
 
 const GetCurrentUserData = (email) => {
+   
     return (dispatch) => {  
         axios({
             method: "get",
@@ -24,15 +25,15 @@ const GetCurrentUserData = (email) => {
             headers: {"ContentType": "application/json"}
         })
           .then(r => {
-              console.log(r.data, email, 'the result')
+              console.log(r.data)
               let getUserData = r.data.filter(o => o.email === email);
-              console.log(getUserData)
               let currentUser = {}
               currentUser.name = getUserData[0].name;
               currentUser.Orders = getUserData[0].orders;
               currentUser.isAdmin = getUserData[0].admin;
             //   console.log(getUserData, getUserData, 'this here')
               dispatch({type: "LoggedUserData", payload: currentUser})
+              dispatch({type: "LoggedUserOrders", payload: getUserData[0].orders})
           }).catch((err) => {
               console.log(err)
           })  

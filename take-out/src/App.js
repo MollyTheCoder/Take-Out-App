@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom'
 import Start from "./Pages/Start";
 import CreateAccount from "./Pages/CreateAccount";
 import RecoverPassword from "./Pages/RecoverPassword";
+import AllOrders from "./Components/AllOrders";
 import fire from './Firebase/Firebase';
 import './App.css';
 
@@ -18,9 +19,10 @@ const App = (props) => {
          <Switch>                                   
               <Route exact path="/" component={Start} />
               <Route path="/SignUp" component={CreateAccount} />    
-              <Route path="/RecoverPassword" component={RecoverPassword} />                
+              <Route path="/RecoverPassword" component={RecoverPassword} />  
+              <Route path="/AllOrders" component={AllOrders} />              
               {/* <Route path="/MyOrder" component={AddOrder} />
-              <Route path="/AllOrders" component={AllOrders} /> */}
+               */}
             </Switch>  
       </div>
     );

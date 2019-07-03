@@ -1,39 +1,31 @@
 import React, {useEffect} from 'react';
 import AddOrder from './../Components/AddOrder';
-import {GetCurrentUserData} from '../actions/actions.js'
 import fire from '../Firebase/Firebase';
 import { connect } from 'react-redux'
-
+import {GetCurrentUserData} from '../actions/userActions.js'
 
 const Orders = (props) => {
-  console.log(props.state, 'this is the state')  
   useEffect(()=>{  
     let currentUser = fire.auth().currentUser; 
-   // console.log("tesdt",currentUser)
+    props.GetCurrentUserData(currentUser.email)
   },[]);
   
 
   return (
     <div id="SeeOrders">
-     {/* <Link to={'/MyOrder'}>
-          <button type="button" className="btn btn-primary m-5">View and Edit Your Order</button>  
-      </Link>   */}
-      {/* {isAdmin} */}
-               <AddOrder data={props.state}/> 
-
-     
+      <AddOrder data={props.state}/>      
     </div>
   )
 }
 
 const mapStateToProps = (store) => {
     return { 
-      state: store.state,
-      filteredState: store.filteredState
+      userInformation: store.user.Userdata,
+      userOrders: store.user.userOrders
     }
   }
   
-  const mapDispatchToProps = {  }
+  const mapDispatchToProps = { GetCurrentUserData }
 
 export default connect(
     mapStateToProps,

@@ -1,13 +1,12 @@
-import React from 'react'
+import React  from 'react'
 import { connect } from 'react-redux'
 import store from './../store'
-import {DeleteOrder} from '../actions/actions.js'
+import {DeleteOrder} from '../actions/orderActions.js'
 import {getDate} from '../general.js'
 import {  Link } from 'react-router-dom'
 import avatar from './avatar.jpg'
 
 const AddOrder = props => {
-
     //ADD EDIT AND DELETE TODAY'S ORDER
     const AddOrderToday = (e) => {
         e.preventDefault();
@@ -74,76 +73,46 @@ const AddOrder = props => {
     const todayDate = getDate();
 
     //add button for admins to see al orders
-    // const isAdmin = props.filteredState.map((o,k) => {   
-    //     if(o.admin === true) {
-    //         return (               
-    //             <Link to={'/AllOrders'} key={k}>
-    //                 <button type="button" className="btn btn-primary m-5">View and Edit All Orders</button>  
-    //             </Link>                 
-    //         );
-    //     }        
-    // })
+    const isAdmin = props.userInformation.isAdmin === true ? <Link to={'/AllOrders'}>
+    <button type="button" className="btn btn-primary m-5">View and Edit All Orders</button>  
+</Link> : "";
 
     // RENDER ORDER LIST INFORMATION    
-    // let allOrders = props.filteredState.length > 0 ? props.filteredState.map((o, i) => {
-    //     let orders = o.orders;
-    //     return ( <div key={i} className="profileOrdersList white-background row p-3 d-flex flex-column rounded">
-    //             <h3>All your orders</h3>
-    //             {orders.length > 0 && 
-    //             <div className="container">
-    //                  <div className="row">
-    //                     <p className="col-3"> Order Detail </p>
-    //                     <p className="col-2"> Order Price </p>
-    //                     <p className="col-3"> Order Restaurant</p>
-    //                     <p className="col-2"> Order Status </p>
-    //                     <p className="col-2"> </p>
-    //                  </div>
-    //                     {orders.map((v,k) => {
-    //                         var status = v.orderPaid.toString() === "true" ? <i className="fa fa-check" aria-hidden="true"></i> : <i className="fa fa-times" aria-hidden="true"></i>;
-    //                     return  <div key={k} className="row">
-    //                                 <p className="col-3 orderDetail">{v.orderDetail}</p>
-    //                                 <p className="col-2 orderPrice">{v.orderPrice} {v.orderCurrency}</p>
-    //                                 <p className="col-3 ">{v.orderRestaurant} </p>
-    //                                 <p className="col-2">{status}</p>
-    //                                 {v.orderDate === todayDate && 
-    //                                 <div className="col-2">
-    //                                     <button type="button" className="editOrder btn btn-secondary" onClick={(e) => EditOrder(e, v) }><i className="fa fa-edit"></i></button>
-    //                                     <button type="button" className="deleteOrder btn btn-secondary" onClick={(e) => CancelOrder(e, v)}><i className="fa fa-trash"></i></button>
-    //                                 </div>
-    //                                 }
-    //                             </div> 
-    //                   })}</div>
+    let allOrders = props.userOrders.length > 0 ?  <div className="profileOrdersList white-background row p-3 d-flex flex-column rounded">
+                <h3>All your orders</h3>
                
-    //                 }
-                                
-                
-    //     </div>
-    //     )
-    // }) : "nothing found";
+                <div className="container">
+                     <div className="row">
+                        <p className="col-3"> Order Detail </p>
+                        <p className="col-2"> Order Price </p>
+                        <p className="col-3"> Order Restaurant</p>
+                        <p className="col-2"> Order Status </p>
+                        <p className="col-2"> </p>
+                     </div>
+                        {props.userOrders.map((v,k) => {
+                            var status = v.orderPaid.toString() === "true" ? <i className="fa fa-check" aria-hidden="true"></i> : <i className="fa fa-times" aria-hidden="true"></i>;
+                        return  <div key={k} className="row">
+                                    <p className="col-3 orderDetail">{v.orderDetail}</p>
+                                    <p className="col-2 orderPrice">{v.orderPrice} {v.orderCurrency}</p>
+                                    <p className="col-3 ">{v.orderRestaurant} </p>
+                                    <p className="col-2">{status}</p>
+                                    {v.orderDate === todayDate && 
+                                    <div className="col-2">
+                                        <button type="button" className="editOrder btn btn-secondary" onClick={(e) => EditOrder(e, v) }><i className="fa fa-edit"></i></button>
+                                        <button type="button" className="deleteOrder btn btn-secondary" onClick={(e) => CancelOrder(e, v)}><i className="fa fa-trash"></i></button>
+                                    </div>
+                                    }
+                                </div> 
+                      })}</div>         
+                    </div>  : "nothing found";
 
 
-    //RENDER PROFILE HEADER INFORMATION
-    // let profileHeader = props.filteredState.map((o, i) => {
-    //     //let orders = o.orders;
-    //     return ( <div key={i} className="profileHeader mb-3 white-background row flex-column d-flex">    
-    //             <div className="profilePictureWrapper mx-auto">  
-    //                 <img src={avatar} className="profilePicture" alt="" />          
-    //             </div>
-    //             <h1 className="m-5">{o.name}</h1>    
-    //             <div>
-    //                 <p>Unpaid Orders</p>
-    //                 {/* {isAdmin} */}
-    //             </div>                                                         
-                
-    //     </div>
-    //     )
-    // }) 
     
     // ADD 'D-NONE' CLASS TO SAVE NEW ORDER CONTAINER ON PAGE LOAD
-    // let isOrderToday = props.filteredState.length ? props.filteredState[0].orders.reduce((r,o) => {
-    //     r = o.orderDate === todayDate && !document.getElementById('SaveNewOrder').classList.contains('d-none') ? "d-none" : "";        
-    //     return r;
-    // }, "") : "nothing found";
+    let isOrderToday = props.userOrders.length ? props.userOrders.reduce((r,o) => {
+        r = o.orderDate === todayDate && !document.getElementById('SaveNewOrder').classList.contains('d-none') ? "d-none" : "";        
+        return r;
+    }, "") : "";
 
     
     //START OF HTML
@@ -156,10 +125,20 @@ const AddOrder = props => {
             </div>
             
 
-            {/* {profileHeader} */}
+            <div  className="profileHeader mb-3 white-background row flex-column d-flex">    
+                <div className="profilePictureWrapper mx-auto">  
+                    <img src={avatar} className="profilePicture" alt="" />          
+                </div>
+                <h1 className="m-5">{props.userInformation.name}</h1>    
+                <div>
+                    <p>Unpaid Orders</p>
+                    {isAdmin}
+                </div>                                                         
+                
+        </div>
                 
         
-            <div id="SaveNewOrder" className=" white-background my-3 p-3 row d-flex flex-column rounded" >       
+            <div id="SaveNewOrder" className={isOrderToday + " white-background my-3 p-3 row d-flex flex-column rounded"} >       
                 <h3 className="mb-3">Today's order</h3>
                 <form id="addOrderForm" className="d-flex justify-content-around" onSubmit={(e)=> AddOrderToday(e)} autoComplete="off" noValidate>
                     <input type="hidden" name="orderCurrency" value="LEI" />                
@@ -181,17 +160,17 @@ const AddOrder = props => {
                 <p className="error-field d-none priceNotNo"> You must pay your debt with number, not letters</p>
             </div>
 
-            {/* {allOrders} */}
+            {allOrders}
         
         </div>
     )
 }
 
 const mapStateToProps = (store) => {
-    return {
-      state: store.order.state,
-      filteredState: store.order.filteredState
-    }
+    return { 
+        userInformation: store.user.Userdata,
+        userOrders: store.user.userOrders
+      }
   }
   
   const mapDispatchToProps = {  }
@@ -201,4 +180,5 @@ export default connect(
     mapDispatchToProps
   )(AddOrder)
 
+ // export default AddOrder
 
