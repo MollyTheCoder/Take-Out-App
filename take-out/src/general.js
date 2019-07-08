@@ -10,4 +10,14 @@ const getDate = () => {
     return (yyyy + "-" + mm + "-" + dd);
 };
 
-export {getDate}
+
+//CHECK IF VALUE IS NUMBER
+function isNumeric(n) {
+    return !isNaN(parseFloat(n)) && isFinite(n);
+}
+
+function getRandomInt(max) {
+    return Math.floor(Math.random() * Math.floor(max));
+  }
+
+export {getDate, isNumeric, getRandomInt}

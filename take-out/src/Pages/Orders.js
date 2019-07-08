@@ -7,7 +7,8 @@ import {GetCurrentUserData} from '../actions/userActions.js'
 const Orders = (props) => {
   useEffect(()=>{  
     let currentUser = fire.auth().currentUser; 
-    props.GetCurrentUserData(currentUser.email)
+    console.log(currentUser)
+    props.GetCurrentUserData(currentUser.uid)
   },[]);
   
 

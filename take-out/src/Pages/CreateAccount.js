@@ -1,7 +1,6 @@
 import React from 'react'
 import fire from '../Firebase/Firebase';
 import {  Link } from 'react-router-dom'
-//import store from './../store'
 
 const CreateAccount = () => {
 
@@ -9,11 +8,20 @@ const CreateAccount = () => {
      
         let user = document.getElementById('username').value;
         let pass = document.getElementById('password').value;
+        let name = document.getElementById('name').value;
+        
 
         e.preventDefault();
         fire.auth().createUserWithEmailAndPassword(user, pass).then((u)=>{
-            console.log(u)
-        }).then((u)=>{console.log(u)})
+            let userId = u.user.uid;
+            //create user in data base
+            fire.database().ref('users/' + userId).set({
+                email: user,
+                name: name,
+                isAdmin: false,
+                userId: userId
+              });
+        })
         .catch((error) => {
             console.log(error);
         //    L {code: "auth/email-already-in-use", message: "The email address is already in use by another account."}
@@ -27,6 +35,8 @@ const CreateAccount = () => {
             <h3 className="mb-5">Create a new account</h3>
             <div className="col-10 mx-auto d-flex flex-column">
                 <form>
+                <label>Name</label>
+                <input type="text" className="mx-auto form-control mb-3" name="name" id="name" />
                 <label>Email</label>
                 <input type="text" className="mx-auto form-control mb-3" name="username" id="username" />
                 <label>Password</label>

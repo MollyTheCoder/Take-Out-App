@@ -26,18 +26,6 @@ const GetUnpaidOrders = () => {
 
 }
 
-const DeleteOrder = (state, obj) => {
-    let newState = state.reduce((r,o,v) => {
-        let deleteOrders = o.orders.filter(n => n !== obj);
-        o = {...o, orders: [...deleteOrders]}
-
-        return [...r, o]
-
-    }, [])
-
- //    store.dispatch({type: "ChangeOrder", payload: newState}); 
-}
-
 const PayOrder = (orderId, unpaidOrders) => {
     return (dispatch) => {  
         let newObj = unpaidOrders.reduce((r,v) => {
@@ -50,4 +38,4 @@ const PayOrder = (orderId, unpaidOrders) => {
     
 }
 
-export {GetUnpaidOrders, DeleteOrder, PayOrder}
+export {GetUnpaidOrders, PayOrder}

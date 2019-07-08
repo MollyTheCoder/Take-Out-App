@@ -1,115 +1,74 @@
 import React  from 'react'
 import { connect } from 'react-redux'
 import store from './../store'
-import {DeleteOrder} from '../actions/orderActions.js'
+import {AddOrderToday, DeleteOrder} from '../actions/userActions.js'
 import {getDate} from '../general.js'
 import {  Link } from 'react-router-dom'
 import avatar from './avatar.jpg'
 
 const AddOrder = props => {
-    //ADD EDIT AND DELETE TODAY'S ORDER
-    const AddOrderToday = (e) => {
-        e.preventDefault();
 
-        let newOrder = {};
-        newOrder.orderPaid = false;
-        newOrder.orderDate = todayDate;
-        let newState = props.filteredState;
+    const usersOrders = props.userOrders;
+    const EditOrder = (obj) => {
+         props.DeleteOrder(usersOrders, obj);    
+     
+         document.querySelector('input[name="orderDetail"]').value = obj.orderDetail;
+         document.querySelector('input[name="orderPrice"]').value = obj.orderPrice;
+         document.querySelector('input[name="orderRestaurant"]').value = obj.OrderRestaurant;
+         document.getElementById('SaveNewOrder').classList.remove('d-none');   
+         document.getElementById('SaveNewOrder').classList.add('d-flex')        
+     }
+     const CancelOrder = (obj) => {
+         props.DeleteOrder(usersOrders, obj);       
+         document.getElementById('SaveNewOrder').classList.remove('d-none');   
+         document.getElementById('SaveNewOrder').classList.add('d-flex')  
+     }
 
-        let validateFields = [];
-
-        var price = document.querySelector('input[name="orderPrice"]').value;
-
-        e.currentTarget.querySelectorAll('input').forEach(item=> {
-            newOrder[item.getAttribute('name')] = item.value;
-            if(item.value === "") {
-                validateFields = [...validateFields, "empty"]
-                item.classList.add('border-danger');
-            } else {
-                item.classList.remove('border-danger');
-            }
-        })
-
-        if(validateFields.length > 0) {
-            document.querySelector('#SaveNewOrder .fieldsEmpty').classList.remove('d-none');
-        } else if (!isNumeric(price)) {
-            document.querySelector('#SaveNewOrder .priceNotNo').classList.remove('d-none');
-            document.querySelector('#SaveNewOrder .fieldsEmpty').classList.add('d-none');
-        } else {
-            newState[0].orders.push(newOrder);
-            store.dispatch({type: "AddNewOrder", payload: newState});    
-            
-            document.getElementById('SaveNewOrder').classList.remove('d-flex');
-            document.getElementById('SaveNewOrder').classList.add('d-none');
-            document.querySelector('#SaveNewOrder .error-field').classList.add('d-none')
-            document.querySelector('#SaveNewOrder .priceNotNo').classList.add('d-none');
-
-            document.querySelector('input[name="orderDetail"]').value = "";
-            document.querySelector('input[name="orderPrice"]').value = "";
-            document.querySelector('input[name="orderRestaurant"]').value = "";
-        }
-    }    
-    const EditOrder = (e, obj) => {
-        DeleteOrder(props.filteredState, obj);    
-
-        document.querySelector('input[name="orderDetail"]').value = obj.orderDetail;
-        document.querySelector('input[name="orderPrice"]').value = obj.orderPrice;
-        document.querySelector('input[name="orderRestaurant"]').value = obj.OrderRestaurant;
-        document.getElementById('SaveNewOrder').classList.remove('d-none');   
-        document.getElementById('SaveNewOrder').classList.add('d-flex')        
-    }
-    const CancelOrder = (e, obj) => {
-        DeleteOrder(props.filteredState, obj);    
-        document.getElementById('SaveNewOrder').classList.remove('d-none');   
-        document.getElementById('SaveNewOrder').classList.add('d-flex')  
-    }
-
-    //CHECK IF VALUE IS NUMBER
-    function isNumeric(n) {
-        return !isNaN(parseFloat(n)) && isFinite(n);
-    }
-
-    //GET TODAY'S DATE
-    const todayDate = getDate();
-
+    let todayDate = getDate();
     //add button for admins to see al orders
     const isAdmin = props.userInformation.isAdmin === true ? <Link to={'/AllOrders'}>
     <button type="button" className="btn btn-primary m-5">View and Edit All Orders</button>  
 </Link> : "";
 
     // RENDER ORDER LIST INFORMATION    
-    let allOrders = props.userOrders.length > 0 ?  <div className="profileOrdersList white-background row p-3 d-flex flex-column rounded">
+    let allOrders = usersOrders.length > 0 ?  <div className="profileOrdersList white-background row p-3 d-flex flex-column rounded">
                 <h3>All your orders</h3>
                
                 <div className="container">
                      <div className="row">
-                        <p className="col-3"> Order Detail </p>
+                        <p className="col-2"> Order Detail </p>
                         <p className="col-2"> Order Price </p>
-                        <p className="col-3"> Order Restaurant</p>
+                        <p className="col-2"> Order Restaurant</p>
                         <p className="col-2"> Order Status </p>
-                        <p className="col-2"> </p>
+                        <p className="col-2"> Edit order </p>
+                        <p className="col-2"> Ready? </p>
                      </div>
-                        {props.userOrders.map((v,k) => {
+                        {usersOrders.map((v,k) => {
                             var status = v.orderPaid.toString() === "true" ? <i className="fa fa-check" aria-hidden="true"></i> : <i className="fa fa-times" aria-hidden="true"></i>;
                         return  <div key={k} className="row">
-                                    <p className="col-3 orderDetail">{v.orderDetail}</p>
+                                    <p className="col-2 orderDetail">{v.orderDetail}</p>
                                     <p className="col-2 orderPrice">{v.orderPrice} {v.orderCurrency}</p>
-                                    <p className="col-3 ">{v.orderRestaurant} </p>
+                                    <p className="col-2 ">{v.orderRestaurant} </p>
                                     <p className="col-2">{status}</p>
                                     {v.orderDate === todayDate && 
-                                    <div className="col-2">
-                                        <button type="button" className="editOrder btn btn-secondary" onClick={(e) => EditOrder(e, v) }><i className="fa fa-edit"></i></button>
-                                        <button type="button" className="deleteOrder btn btn-secondary" onClick={(e) => CancelOrder(e, v)}><i className="fa fa-trash"></i></button>
+                                    <div className="col-4 row mx-0">
+                                        <div className="col-6">
+                                            <button type="button" className="editOrder btn btn-secondary" onClick={(e) => EditOrder(v) }><i className="fa fa-edit"></i></button>
+                                            <button type="button" className="deleteOrder btn btn-secondary" onClick={(e) => CancelOrder(v)}><i className="fa fa-trash"></i></button>
+                                        </div>
+                                        <div className="col-6">
+                                            <button type="button" className="sendOrder btn btn-secondary">Send order</button>
+                                        </div>
                                     </div>
                                     }
                                 </div> 
                       })}</div>         
-                    </div>  : "nothing found";
+                    </div>  : "No orders yet. Aren't you hungry?";
 
 
     
     // ADD 'D-NONE' CLASS TO SAVE NEW ORDER CONTAINER ON PAGE LOAD
-    let isOrderToday = props.userOrders.length ? props.userOrders.reduce((r,o) => {
+    let isOrderToday = usersOrders.length ? usersOrders.reduce((r,o) => {
         r = o.orderDate === todayDate && !document.getElementById('SaveNewOrder').classList.contains('d-none') ? "d-none" : "";        
         return r;
     }, "") : "";
@@ -140,7 +99,7 @@ const AddOrder = props => {
         
             <div id="SaveNewOrder" className={isOrderToday + " white-background my-3 p-3 row d-flex flex-column rounded"} >       
                 <h3 className="mb-3">Today's order</h3>
-                <form id="addOrderForm" className="d-flex justify-content-around" onSubmit={(e)=> AddOrderToday(e)} autoComplete="off" noValidate>
+                <form id="addOrderForm" className="d-flex justify-content-around" onSubmit={(e)=> props.AddOrderToday(e)} autoComplete="off" noValidate>
                     <input type="hidden" name="orderCurrency" value="LEI" />                
                     <fieldset>
                         <label className="mr-3">Order Detail</label>
@@ -173,12 +132,11 @@ const mapStateToProps = (store) => {
       }
   }
   
-  const mapDispatchToProps = {  }
+  const mapDispatchToProps = { AddOrderToday, DeleteOrder }
 
 export default connect(
     mapStateToProps,
     mapDispatchToProps
   )(AddOrder)
 
- // export default AddOrder
 
