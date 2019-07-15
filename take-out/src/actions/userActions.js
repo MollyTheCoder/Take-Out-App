@@ -25,15 +25,19 @@ const GetCurrentUserData = (id) => {
             headers: {"ContentType": "application/json"}
         })
           .then(r => {
-              console.log(r.data)
+              console.log(r.data[id], 'this is the user data')
               let getUserData = r.data[id];
               let currentUser = {};
               currentUser.name = getUserData.name;
-              currentUser.Orders = getUserData.orders;
               currentUser.isAdmin = getUserData.admin;
-            //   console.log(getUserData, getUserData, 'this here')
+              if(getUserData.orders == "undefined") {
+                currentUser.Orders = [];
+              } else {
+                currentUser.Orders = getUserData.orders;
+              }
+
               dispatch({type: "LoggedUserData", payload: currentUser})
-              dispatch({type: "LoggedUserOrders", payload: getUserData[0].orders})
+              dispatch({type: "LoggedUserOrders", payload: currentUser.Orders})
           }).catch((err) => {
               console.log(err)
           })  

@@ -1,7 +1,7 @@
 import React  from 'react'
 import { connect } from 'react-redux'
-import store from './../store'
 import {AddOrderToday, DeleteOrder} from '../actions/userActions.js'
+import {SendOrder} from '../actions/orderActions.js'
 import {getDate} from '../general.js'
 import {  Link } from 'react-router-dom'
 import avatar from './avatar.jpg'
@@ -57,7 +57,7 @@ const AddOrder = props => {
                                             <button type="button" className="deleteOrder btn btn-secondary" onClick={(e) => CancelOrder(v)}><i className="fa fa-trash"></i></button>
                                         </div>
                                         <div className="col-6">
-                                            <button type="button" className="sendOrder btn btn-secondary">Send order</button>
+                                            <button type="button" className="sendOrder btn btn-secondary" onClick={(e) => props.SendOrder(v)}>Send order</button>
                                         </div>
                                     </div>
                                     }
@@ -132,7 +132,7 @@ const mapStateToProps = (store) => {
       }
   }
   
-  const mapDispatchToProps = { AddOrderToday, DeleteOrder }
+  const mapDispatchToProps = { AddOrderToday, DeleteOrder, SendOrder }
 
 export default connect(
     mapStateToProps,

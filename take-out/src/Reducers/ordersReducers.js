@@ -5,13 +5,9 @@ const reducer  = (state = {AllOrders: [], UnpaidOrders: []}, {type,payload}) => 
     if(type === "PayOrder") {
         return {...state, "UnpaidOrders": [...payload]}
     }
-    // if(type === "UpdateOrder") {
-    //     return {...state, "state": [...payload]}
-    // }
-    // if(type === "UpdateUserOrder") {
-    //     return {...state,"filteredState": [...payload]}
-    // }
-
+    if(type === "NewOrder") {
+        return {...state, "UnpaidOrders": [payload, ...state.UnpaidOrders]}
+    }
     
     return state;
 }

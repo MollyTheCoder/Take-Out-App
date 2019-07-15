@@ -18,8 +18,9 @@ const CreateAccount = () => {
             fire.database().ref('users/' + userId).set({
                 email: user,
                 name: name,
-                isAdmin: false,
-                userId: userId
+                admin: false,
+                userId: userId,
+                orders: "undefined"
               });
         })
         .catch((error) => {
